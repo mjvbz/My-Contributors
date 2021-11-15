@@ -1,0 +1,17 @@
+name: README Repos List
+on:
+  workflow_dispatch:
+  schedule:
+    # runs at midnight UTC every day
+    - cron: "0 0 * * *"
+jobs:
+  list:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run readme-repos-list
+        uses: DenverCoderOne/readme-repos-list@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          query: "user:ItsMeShon fork:only"
+          max: 100
+          sort: "updated"
